@@ -106,7 +106,10 @@ body{
 		.codeblock__output{
 			float         :left;
 
-			width         : 50%;
+			overflow-x: hidden;
+
+			min-width     : 50%;
+			max-width     : 85%;
 			padding       : 20px;
 			margin-top    : 15px;
 			margin-right  : 10px;
