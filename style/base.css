@@ -1,0 +1,134 @@
+[data-schematic]{
+	display :none !important;
+}
+
+html{
+
+}
+
+body{
+
+}
+
+h1{
+
+}
+
+h2{
+
+}
+
+h3{
+
+}
+
+p{
+
+}
+
+
+/* Buttons */
+
+.small-button{
+	cursor                    : pointer;
+	color                     : white;
+	background-color          : #0e82ac;
+	padding-left              :15px;
+	padding-right             :15px;
+	height                    : 29px;
+	line-height               : 30px;
+	text-align                : center;
+	font-size                 : 0.8em;
+	text-align                : center;
+	margin                    : 13px;
+}
+.small-button:hover{
+	background-color          : #0099cc;
+}
+
+.button{
+	margin                    : 15px;
+	height                    : 35px;
+	line-height               : 35px;
+	cursor                    : pointer;
+	color                     : white;
+	text-align                : center;
+	padding-left              : 10px;
+	padding-right             : 10px;
+	background-color          : #0e82ac;
+}
+.button:hover{
+	background-color          : #0099cc;
+}
+
+.large-button{
+	margin-right              : auto;
+	margin-left               : auto;
+	width                     : 100%;
+	color                     : white;
+	font-size                 : 24px;
+	text-align                : center;
+	background-color          : #0e82ac;
+	margin-top                : 36px;
+	margin-bottom             : 36px;
+	height                    : 50px;
+	line-height               : 50px;
+	cursor                    : pointer;
+}
+.large-button:hover{
+	background-color          : #0099cc;
+}
+
+
+
+/* Animations */
+
+.error-pulse{
+	animation:			error-animation 6.0s 1;
+	-moz-animation:		error-animation 6.0s 1;
+	-webkit-animation:	error-animation 6.0s 1;
+}
+
+
+.block-pulse{
+	animation:			pulse-animation 1.0s 1;
+	-moz-animation:		pulse-animation 1.0s 1;
+	-webkit-animation:	pulse-animation 1.0s 1;
+}
+
+@-webkit-keyframes pulse-animation{
+	0%		{-webkit-box-shadow:0 0 5px #0e82ac}
+	50%		{-webkit-box-shadow:0 0 50px #0e82ac}
+	100%	{-webkit-box-shadow:0 0 5px #0e82ac}
+}
+
+@-moz-keyframes pulse-animation{
+	0%		{-moz-box-shadow:0 0 5px #0e82ac}
+	50%		{-moz-box-shadow:0 0 50px #0e82ac}
+	100%	{-moz-box-shadow:0 0 5px #0e82ac}
+}
+
+@keyframes pulse-animation{
+	0%		{box-shadow:0 0 5px #0e82ac}
+	50%		{box-shadow:0 0 50px #0e82ac}
+	100%	{box-shadow:0 0 5px #0e82ac}
+}
+
+
+@-webkit-keyframes error-animation{
+	0%		{-webkit-box-shadow:0 0 5px #AB2D0E}
+	50%		{-webkit-box-shadow:0 0 50px #AB2D0E}
+	100%	{-webkit-box-shadow:0 0 5px #AB2D0E}
+}
+
+@-moz-keyframes error-animation{
+	0%		{-moz-box-shadow:0 0 5px #AB2D0E}
+	50%		{-moz-box-shadow:0 0 50px #AB2D0E}
+	100%	{-moz-box-shadow:0 0 5px #AB2D0E}
+}
+
+@keyframes error-animation{
+	0%		{box-shadow:0 0 5px #AB2D0E}
+	50%		{box-shadow:0 0 50px #AB2D0E}
+	100%	{box-shadow:0 0 5px #AB2D0E}
+}
