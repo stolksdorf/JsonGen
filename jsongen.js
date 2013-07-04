@@ -55,9 +55,9 @@
 					}
 				}
 			}else if(typeof obj === 'function'){
-				result = obj.call(jsongen.functions, index);
+				result = obj.call(jsongen.commands, index);
 			}else if(typeof obj === 'string'){
-				result = processString.call(_.extend(jsongen.functions, {t_index: index}), obj, index);
+				result = processString.call(_.extend(jsongen.commands, {t_index: index}), obj, index);
 			}else if(_.isObject(obj)){
 				result={};
 				_.each(obj, function(val, key){
@@ -76,15 +76,15 @@
 	 */
 	var addExternalLibraries = function(){
 		if(typeof Faker !== 'undefined'){
-			jsongen.functions.Faker = Faker;
+			jsongen.commands.Faker = Faker;
 		}
 		if(typeof moment !== 'undefined'){
-			jsongen.functions.date = function(format)
+			jsongen.commands.date = function(format)
 			{
 				format = format || '';
 				return moment(this.utc()).format(format);
 			};
-			jsongen.functions.now = function(format)
+			jsongen.commands.now = function(format)
 			{
 				format = format||'';
 				return moment().format(format);
@@ -147,8 +147,8 @@
 		return target;
 	};
 
-	jsongen.definitions = {
-		loremWordBank : ['lorem','ipsum','dolor','sit','amet,','consectetur','adipisicing','elit,','sed','do','eiusmod','tempor','incididunt','ut','labore','et','dolore','magna','aliqua.','enim','ad','minim','veniam,','quis','nostrud','exercitation','ullamco','laboris','nisi','ut','aliquip','ex','ea','commodo','consequat.','duis','aute','irure','dolor','in','reprehenderit','in','voluptate','velit','esse','cillum','dolore','eu','fugiat','nulla','pariatur.','excepteur','sint','occaecat','cupidatat','non','proident,','sunt','in','culpa','qui','officia','deserunt','mollit','anim','id','est','laborum.','sed','ut','perspiciatis,','unde','omnis','iste','natus','error','sit','voluptatem','accusantium','doloremque','laudantium,','totam','rem','aperiam','eaque','ipsa,','quae','ab','illo','inventore','veritatis','et','quasi','architecto','beatae','vitae','dicta','sunt,','explicabo.','nemo','enim','ipsam','voluptatem,','quia','voluptas','sit,','aspernatur','aut','odit','aut','fugit,','sed','quia','consequuntur','magni','dolores','eos,','qui','ratione','voluptatem','sequi','nesciunt,','neque','porro','quisquam','est,','qui','dolorem','ipsum,','quia','dolor','sit,','amet,','consectetur,','adipisci','velit,','sed','quia','non','numquam','eius','modi','tempora','incidunt,','ut','labore','et','dolore','magnam','aliquam','quaerat','voluptatem.','ut','enim','ad','minima','veniam,','quis','nostrum','exercitationem','ullam','corporis','suscipit','laboriosam,','nisi','ut','aliquid','ex','ea','commodi','consequatur?','quis','autem','vel','eum','iure','reprehenderit,','qui','in','ea','voluptate','velit','esse,','quam','nihil','molestiae','consequatur,','vel','illum,','qui','dolorem','eum','fugiat,','quo','voluptas','nulla','pariatur?','at','vero','eos','et','accusamus','et','iusto','odio','dignissimos','ducimus,','qui','blanditiis','praesentium','voluptatum','deleniti','atque','corrupti,','quos','dolores','et','quas','molestias','excepturi','sint,','obcaecati','cupiditate','non','provident,','similique','sunt','in','culpa,','qui','officia','deserunt','mollitia','animi,','id','est','laborum','et','dolorum','fuga.','harum','quidem','rerum','facilis','est','et','expedita','distinctio.','Nam','libero','tempore,','cum','soluta','nobis','est','eligendi','optio,','cumque','nihil','impedit,','quo','minus','id,','quod','maxime','placeat,','facere','possimus,','omnis','voluptas','assumenda','est,','omnis','dolor','repellendus.','temporibus','autem','quibusdam','aut','officiis','debitis','aut','rerum','necessitatibus','saepe','eveniet,','ut','et','voluptates','repudiandae','sint','molestiae','non','recusandae.','itaque','earum','rerum','hic','tenetur','a','sapiente','delectus,','aut','reiciendis','voluptatibus','maiores','alias','consequatur','aut','perferendis','doloribus','asperiores','repellat'],
+	jsongen.wordbank = {
+		lorem         : ['lorem','ipsum','dolor','sit','amet,','consectetur','adipisicing','elit,','sed','do','eiusmod','tempor','incididunt','ut','labore','et','dolore','magna','aliqua.','enim','ad','minim','veniam,','quis','nostrud','exercitation','ullamco','laboris','nisi','ut','aliquip','ex','ea','commodo','consequat.','duis','aute','irure','dolor','in','reprehenderit','in','voluptate','velit','esse','cillum','dolore','eu','fugiat','nulla','pariatur.','excepteur','sint','occaecat','cupidatat','non','proident,','sunt','in','culpa','qui','officia','deserunt','mollit','anim','id','est','laborum.','sed','ut','perspiciatis,','unde','omnis','iste','natus','error','sit','voluptatem','accusantium','doloremque','laudantium,','totam','rem','aperiam','eaque','ipsa,','quae','ab','illo','inventore','veritatis','et','quasi','architecto','beatae','vitae','dicta','sunt,','explicabo.','nemo','enim','ipsam','voluptatem,','quia','voluptas','sit,','aspernatur','aut','odit','aut','fugit,','sed','quia','consequuntur','magni','dolores','eos,','qui','ratione','voluptatem','sequi','nesciunt,','neque','porro','quisquam','est,','qui','dolorem','ipsum,','quia','dolor','sit,','amet,','consectetur,','adipisci','velit,','sed','quia','non','numquam','eius','modi','tempora','incidunt,','ut','labore','et','dolore','magnam','aliquam','quaerat','voluptatem.','ut','enim','ad','minima','veniam,','quis','nostrum','exercitationem','ullam','corporis','suscipit','laboriosam,','nisi','ut','aliquid','ex','ea','commodi','consequatur?','quis','autem','vel','eum','iure','reprehenderit,','qui','in','ea','voluptate','velit','esse,','quam','nihil','molestiae','consequatur,','vel','illum,','qui','dolorem','eum','fugiat,','quo','voluptas','nulla','pariatur?','at','vero','eos','et','accusamus','et','iusto','odio','dignissimos','ducimus,','qui','blanditiis','praesentium','voluptatum','deleniti','atque','corrupti,','quos','dolores','et','quas','molestias','excepturi','sint,','obcaecati','cupiditate','non','provident,','similique','sunt','in','culpa,','qui','officia','deserunt','mollitia','animi,','id','est','laborum','et','dolorum','fuga.','harum','quidem','rerum','facilis','est','et','expedita','distinctio.','Nam','libero','tempore,','cum','soluta','nobis','est','eligendi','optio,','cumque','nihil','impedit,','quo','minus','id,','quod','maxime','placeat,','facere','possimus,','omnis','voluptas','assumenda','est,','omnis','dolor','repellendus.','temporibus','autem','quibusdam','aut','officiis','debitis','aut','rerum','necessitatibus','saepe','eveniet,','ut','et','voluptates','repudiandae','sint','molestiae','non','recusandae.','itaque','earum','rerum','hic','tenetur','a','sapiente','delectus,','aut','reiciendis','voluptatibus','maiores','alias','consequatur','aut','perferendis','doloribus','asperiores','repellat'],
 		firstNames    : ['Sophia','Emma','Olivia','Isabella','Ava','Lily','Zoe','Chloe','Mia','Madison','Emily','Ella','Madelyn','Abigail','Aubrey','Addison','Avery','Layla','Hailey','Amelia','Hannah','Charlotte','Kaitlyn','Harper','Kaylee','Sophie','Mackenzie','Peyton','Riley','Grace','Brooklyn','Sarah','Aaliyah','Anna','Arianna','Ellie','Natalie','Isabelle','Lillian','Evelyn','Elizabeth','Lyla','Lucy','Claire','Makayla','Kylie','Audrey','Maya','Leah','Gabriella','Annabelle','Savannah','Nora','Reagan','Scarlett','Samantha','Alyssa','Allison','Elena','Stella','Alexis','Victoria','Aria','Molly','Maria','Bailey','Sydney','Bella','Mila','Taylor','Kayla','Eva','Jasmine','Gianna','Alexandra','Julia','Eliana','Kennedy','Brianna','Ruby','Lauren','Alice','Violet','Kendall','Morgan','Caroline','Piper','Brooke','Elise','Alexa','Sienna','Reese','Clara','Paige','Kate','Nevaeh','Sadie','Quinn','Isla','Eleanor','Aiden','Jackson','Ethan','Liam','Mason','Noah','Lucas','Jacob','Jayden','Jack','Logan','Ryan','Caleb','Benjamin','William','Michael','Alexander','Elijah','Matthew','Dylan','James','Owen','Connor','Brayden','Carter','Landon','Joshua','Luke','Daniel','Gabriel','Nicholas','Nathan','Oliver','Henry','Andrew','Gavin','Cameron','Eli','Max','Isaac','Evan','Samuel','Grayson','Tyler','Zachary','Wyatt','Joseph','Charlie','Hunter','David','Anthony','Christian','Colton','Thomas','Dominic','Austin','John','Sebastian','Cooper','Levi','Parker','Isaiah','Chase','Blake','Aaron','Alex','Adam','Tristan','Julian','Jonathan','Christopher','Jace','Nolan','Miles','Jordan','Carson','Colin','Ian','Riley','Xavier','Hudson','Adrian','Cole','Brody','Leo','Jake','Bentley','Sean','Jeremiah','Asher','Nathaniel','Micah','Jason','Ryder','Declan','Hayden','Brandon','Easton','Lincoln','Harrison'],
 		lastNames     : ['Smith','Johnson','Williams','Jones','Brown','Davis','Miller','Wilson','Moore','Taylor','Anderson','Thomas','Jackson','White','Harris','Martin','Thompson','Garcia','Martinez','Robinson','Clark','Rodriguez','Lewis','Lee','Walker','Hall','Allen','Young','Hernandez','King','Wright','Lopez','Hill','Scott','Green','Adams','Baker','Gonzalez','Nelson','Carter','Mitchell','Perez','Roberts','Turner','Phillips','Campbell','Parker','Evans','Edwards','Collins','Stewart','Sanchez','Morris','Rogers','Reed','Cook','Morgan','Bell','Murphy','Bailey','Rivera','Cooper','Richardson','Cox','Howard','Ward','Torres','Peterson','Gray','Ramirez','James','Watson','Brooks','Kelly','Sanders','Price','Bennett','Wood','Barnes','Ross','Henderson','Coleman','Jenkins','Perry','Powell','Long','Patterson','Hughes','Flores','Washington','Butler','Simmons','Foster','Gonzales','Bryant','Alexander','Russell','Griffin','Diaz','Hayes'],
 		companyNames  : ['Royal Dutch Shell','Exxon Mobil','WalMart Stores','BP','Sinopec Group','China National Petroleum','State Grid','Chevron','ConocoPhillips','Toyota Motor','Total','Volkswagen','Japan Post Holdings','Glencore International','Gazprom','EON','ENI','ING Group','General Motors','Samsung Electronics','Daimler','General Electric','Petrobras','Berkshire Hathaway','AXA','Fannie Mae','Ford Motor','Allianz','Nippon Telegraph','BNP Paribas','HewlettPackard','ATT','GDF Suez','Pemex','Valero Energy','PDVSA','McKesson','Hitachi','Carrefour','Statoil','JX Holdings','Nissan Motor','Hon Hai Precision Industry','Banco Santander','EXOR Group','Bank of America','Siemens','Assicurazioni Generali','Lukoil','Verizon Communications','JP Morgan','Enel','HSBC Holdings','Industrial Bank of China','Apple','CVS Caremark','International Business Machines','Credit Agricole','Tesco','Citigroup','Cardinal Health','BASF','UnitedHealth Group','Honda Motor','SK Holdings','Panasonic','Societe Generale','Petronas','BMW','ArcelorMittal','Nestle','Metro','Electricite de France','Nippon Life Insurance','Kroger','Munich Re Group','China Construction Bank','Costco Wholesale','Freddie Mac','Wells Fargo','China Mobile Communications','Telefonica','Indian Oil','Agricultural Bank of China','Peugeot','Procter Gamble','Sony','Banco do Brasil','Deutsche Telekom','Repsol YPF','Noble Group','Archer Daniels Midland','Bank of China','AmerisourceBergen','PTT','Meiji Yasuda Life Insurance','Toshiba','Deutsche Post','Reliance Industries','China State Construction Engineering'],
@@ -157,7 +157,7 @@
 		websiteDomains: ['.org', '.net', '.com', '.com', '.com', '.biz', '.info']
 	};
 
-	jsongen.functions = {
+	jsongen.commands = {
 		index : function()
 		{
 			return this.t_index;
@@ -174,20 +174,24 @@
 		},
 		firstname : function()
 		{
-			return randomFromArray(jsongen.definitions.firstNames);
+			return randomFromArray(jsongen.wordbank.firstNames);
 		},
 		lastname : function()
 		{
-			return randomFromArray(jsongen.definitions.lastNames);
+			return randomFromArray(jsongen.wordbank.lastNames);
 		},
 		email : function()
 		{
-			var domain = randomFromArray(jsongen.definitions.websiteDomains);
+			var domain = randomFromArray(jsongen.wordbank.websiteDomains);
 			return (this.firstname().substring(0,1) + this.lastname() + '@' + this.company().replace(new RegExp(' ', 'g'),'') + domain).toLowerCase();
+		},
+		username : function()
+		{
+			return this.firstname().substring(0,1) + this.lastname();
 		},
 		company : function()
 		{
-			return randomFromArray(jsongen.definitions.companyNames);
+			return randomFromArray(jsongen.wordbank.companyNames);
 		},
 		phone : function()
 		{
@@ -195,11 +199,11 @@
 		},
 		street : function()
 		{
-			return randomFromArray(jsongen.definitions.streetNames);
+			return randomFromArray(jsongen.wordbank.streetNames);
 		},
 		city : function()
 		{
-			return randomFromArray(jsongen.definitions.cityNames);
+			return randomFromArray(jsongen.wordbank.cityNames);
 		},
 		date : function(){
 			return new Date(this.utc()).toDateString();
@@ -243,7 +247,7 @@
 			var numWords = this.num(min,max),
 				result = '';
 			for(i = 0; i < numWords; i++) {
-				var newTxt = jsongen.definitions.loremWordBank[Math.floor(Math.random() * (jsongen.definitions.loremWordBank.length - 1))];
+				var newTxt = jsongen.wordbank.lorem[Math.floor(Math.random() * (jsongen.wordbank.lorem.length - 1))];
 				if (result.substring(result.length-1,result.length) == '.' || result.substring(result.length-1,result.length) == '?') {
 					newTxt = newTxt.substring(0,1).toUpperCase() + newTxt.substring(1, newTxt.length);
 				}
@@ -258,3 +262,4 @@
 		}
 	};
 })();
+

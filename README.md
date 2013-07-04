@@ -1,11 +1,28 @@
 # Hey there
 
 	var basicTest = jsongen([
-		"{{repeat(2,30)}}",
-		"{{lorem()}}"
+		'{{repeat(2)}}',
+		{
+			name    : '{{name()}}',
+			id      : '{{guid()}}',
+			email   : '{{email()}}',
+			address : '{{num(1,99)}} {{street()}}, {{city()}}',
+			posts   : [
+				'{{repeat(0,3)}}',
+				{
+					content : '{{lorem()}}',
+					created : '{{utc()}}'
+				}
+			],
+			status : '{{rand("new", "processing", "registered")}}',
+			tags   : [
+				'{{repeat(0,10)}}',
+				'{{lorem(1)}}'
+			]
+		}
 	]);
 
-	$(example).html(JSON.stringify(basicTest, null, '\t'));
+	$(example).html(JSON.stringify(basicTest, null, '  '));
 
 So cool
 
@@ -33,16 +50,37 @@ lorem
 
 # Functions
 
-	var basicTest = jsongen([
-		"{{repeat(2,30)}}",
-		function(){
-			if(this.bool()) return 'male';
-			return 'female';
+If Jsongen comes across a function in your markup, it will not only execute t, but it will scope all of Jsongen's functions onto `this`, letting you use everything in the library from within the function.
+
+This is useful if you need to add logic to your data.
+
+	var embeddedFunctions = jsongen([
+		'{{repeat(5)}}',
+		{
+			email : '{{email()}}',
+			gender : function(){
+				if(this.bool()) return 'male';
+				return 'female';
+			}
 		}
 	]);
 
-	$(example).html(JSON.stringify(basicTest, null, '\t'));
+	$(example).html(JSON.stringify(embeddedFunctions, null, '  '));
 
+# Definitions
+
+Jsongen uses arrays of words to generate it's random data stored in the `jsongen.wordBank` variable.
+
+You can overwrite these to have your data generation more specific to your needs.
+
+	jsongen.wordbank.firstNames = ['Enzo', 'Dot', 'Bob', 'Megabyte', 'Hexidecimal'];
+
+	var RebootCharacters = jsongen([
+		'{{repeat(2)}}',
+		'{{firstname()}}'
+	]);
+
+	$(example).html(JSON.stringify(RebootCharacters, null, '  '));
 
 # External Libraries
 
@@ -66,13 +104,15 @@ Every Faker.js function is accessible using the `Faker` prefix. Check out the fu
 
 ## Moment.js
 
-[Moment.js]() is a complete Javascript date library for parsing, validating, manipulating, and formatting dates. If youe have Moment.js on your page, then Jsongen will update the `now` and the `date` functions to use Moment.js's formatting.
+[Moment.js](http://momentjs.com/) is a complete Javascript date library for parsing, validating, manipulating, and formatting dates. If you have it on your page, then Jsongen will update the `now` and the `date` functions to use Moment.js's formatting.
 
 Check out full documentation on Moment.js's formating [here](http://momentjs.com/docs/#/parsing/string-format/)
 
 	var MomentIsAlsoCool = jsongen([
-		'{{now("YYYY-MM-DD HH:mm Z")}}',
-		'{{now("YYYY-MM-DD HH:mm Z")}}'
+		'{{date("YYYY-MM-DD HH:mm Z")}}',
+		function(){
+			return this.now('dddd MMMM DD[, ] DDD [day of the year.] SSS[ms]');
+		}
 	]);
 
 	$(example).html(JSON.stringify(MomentIsAlsoCool, null, '  '));
