@@ -111,11 +111,15 @@
 	*****************************************
 -->
 
+<script type="text/javascript" src="jsongen.js"></script>
+<script type="text/javascript" src="faker.js"></script>
+
+
 
 <!-- This html will be use for each code example in your project -->
-<div data-schematic='code_html'>
-	<!-- HTML code for your code block demos go in here -->
-</div>
+<pre data-schematic='code_html' style='font-family:Courier'>
+
+</pre>
 
 <!-- This html will be use for the example at the top of the page -->
 <div data-schematic='example_html'>
@@ -124,44 +128,46 @@
 
 <script>
 	CreatePaintJob({
-		user :'USERNAME',
-		repo :'REPO',
+		use_local : true,
 
-		logo_class : 'icon-question',
-		logo_color : 'orange',
+		user :'stolksdorf',
+		repo :'Jsongen',
+
+		logo_class : 'icon-cogs',
+		logo_color : 'steel',
 
 		/* Project Icons */
 		icons : [
 			{
 				icon_class : 'icon-github',
 				color      : 'blue',
-				link       : 'https://github.com/USERNAME/REPO',
+				link       : 'https://github.com/stolksdorf/Jsongen',
 				tooltip    : 'View on Github'
 			},
 			{
 				icon_class : 'icon-code-fork',
 				color      : 'green',
-				link       : 'https://github.com/USERNAME/REPO/fork',
+				link       : 'https://github.com/stolksdorf/Jsongen/fork',
 				tooltip    : 'Fork on Github'
 			},
 			{
 				icon_class : 'icon-code',
 				color      : 'steel',
-				link       : 'https://raw.github.com/USERNAME/REPO/BRANCH/FILE.html',
+				link       : 'https://raw.github.com/stolksdorf/Jsongen/master/jsongen.js',
 				tooltip    : 'View Raw'
 			},
 			{
 				icon_class : 'icon-home',
 				color      : 'red',
-				link       : 'https://github.com/USERNAME',
+				link       : 'https://github.com/stolksdorf',
 				tooltip    : 'Check out more cool things'
 			}
 
 		],
 
 		/* Code Blocks */
-		runnable_code_blocks : false, //Adds the run buttn to code blocks in your readme
-		show_html_example    : false, //Shows a html demo under each code block
+		runnable_code_blocks : true,
+		show_html_example    : true,
 
 		/* Example */
 		example_initialize : function(){
