@@ -1,6 +1,6 @@
 # Hey there
 
-	var basicTest = jsongen([
+	var basicExample = jsongen([
 		'{{repeat(2)}}',
 		{
 			name    : '{{name()}}',
@@ -22,7 +22,7 @@
 		}
 	]);
 
-	$(example).html(JSON.stringify(basicTest, null, '  '));
+	$(example).html(JSON.stringify(basicExample, null, '  '));
 
 So cool
 
@@ -69,9 +69,9 @@ This is useful if you need to add logic to your data.
 
 # Definitions
 
-Jsongen uses arrays of words to generate it's random data stored in the `jsongen.wordBank` variable.
+Jsongen uses arrays of words to generate it's random data stored in the `jsongen.wordbank` variable. You can overwrite these to have your data generation more specific to your needs.
 
-You can overwrite these to have your data generation more specific to your needs.
+The word banks used are `lorem`, `firstNames`, `lastNames`, `companyNames`, `streetNames`, `cityNames`, and `websiteDomains`
 
 	jsongen.wordbank.firstNames = ['Enzo', 'Dot', 'Bob', 'Megabyte', 'Hexidecimal'];
 
