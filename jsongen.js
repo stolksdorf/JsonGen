@@ -206,7 +206,7 @@
 			return randomFromArray(jsongen.wordbank.cityNames);
 		},
 		date : function(){
-			return new Date(this.utc()).toDateString();
+			return new Date(this.unix()).toDateString();
 		},
 		now : function()
 		{
@@ -214,9 +214,17 @@
 		},
 		utc : function()
 		{
-			return _.random(987019508999, this.utc_now());
+			return new Date(this.unix()).toISOString();
 		},
 		utc_now : function()
+		{
+			return Date().getTime();
+		},
+		unix : function()
+		{
+			return _.random(987019508999, this.unix_now());
+		},
+		unix_now : function()
 		{
 			return Date.now();
 		},
