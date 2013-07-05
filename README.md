@@ -1,3 +1,5 @@
+Check out a demo [here](http://stolksdorf.github.io/JsonGen).
+
 # What is it?
 JsonGen is library for generating random JSON data. It uses a simple markup and handful of included functions. By passing a markup'd JSON object through `jsongen` it will return the randomized data as a JSON object.
 
