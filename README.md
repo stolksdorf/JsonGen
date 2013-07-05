@@ -1,11 +1,3 @@
-	var basicExample = jsongen([
-	  '{{unix()}}',
-	  '{{date()}}',
-	  '{{utc()}}'
-	]);
-
-	$(example).html(JSON.stringify(basicExample, null, '  '));
-
 
 # Hey there
 
@@ -20,7 +12,7 @@
 				'{{repeat(0,3)}}',
 				{
 					content : '{{lorem()}}',
-					created : '{{utc()}}'
+					created : '{{date()}}'
 				}
 			],
 			status : '{{rand("new", "processing", "registered")}}',
@@ -32,9 +24,6 @@
 	]);
 
 	$(example).html(JSON.stringify(basicExample, null, '  '));
-
-So cool
-
 
 
 
@@ -76,9 +65,9 @@ The word banks used are `lorem`, `firstNames`, `lastNames`, `companyNames`, `str
 
 
 # Commands
-**`index()`** - Returns the current iteration of a repeat loop. Useful for generating unique ids.
+`index()`    - Returns the current iteration of a repeat loop. Useful for generating unique ids.
 
-**`guid()`** - Returns a [Globally Unique Identifier](http://en.wikipedia.org/wiki/Globally_unique_identifier)
+`guid()`     - Returns a [Globally Unique Identifier](http://en.wikipedia.org/wiki/Globally_unique_identifier)
 
 __`repeat(NumOfTimes), repeat(min, max)`__ - The repeat command is used as the first element of an array. It will then take the second element of the array and populate the array with that many copies of it. If only one parameter is passed to `repeat` is will repeat the object exactly that many times. If a range is given, Jsongen will chose a random number between those ranges.
 
@@ -98,27 +87,21 @@ __`repeat(NumOfTimes), repeat(min, max)`__ - The repeat command is used as the f
 
 `city()`      - Returns a common city name from North America
 
-`date()`      -
+`date()`      - Generates a random date between now and Jan 1st 2010. Returned in [ISO8601 format](http://en.wikipedia.org/wiki/ISO_8601).
 
-`now()`       -
+`now()`       - Returns the current time in [ISO8601 format](http://en.wikipedia.org/wiki/ISO_8601).
 
-`utc()`       -
+`unix()`      - Generates a random date between now and Jan 1st 2010. Returned in [Unix time](http://en.wikipedia.org/wiki/Unix_timestamp).
 
-`utc_now()`   -
+`unix_now()`  - Returns the current time in [Unix time](http://en.wikipedia.org/wiki/Unix_timestamp).
 
-`unix()`      -
+`bool()`      -Returns either a true or a false at random.
 
-`unix_now()`  -
+`num(max), num(min, max)` -If given one parameter returns a random number from 1 to `max`. If given two it will use the range.
 
+`rand(n1,n2,n3,...)` -Given a list of any type of items it will return one of them at random.
 
-**`bool()`**      -Returns either a true or a false at random.
-
-**`num(max), num(min, max)`** -If given one parameter returns a random number from 1 to `max`. If given two it will use the range.
-
-**`rand(n1,n2,n3,...)`** -Given a list of any type of items it will return one of them at random.
-
-**`lorem(max), lorem(min,max)`** -Returns sentences of random text generated using [Lorem Ipsum](http://en.wikipedia.org/wiki/Lorem_ipsum).
-
+`lorem(max), lorem(min,max)` -Returns sentences of random text generated using [Lorem Ipsum](http://en.wikipedia.org/wiki/Lorem_ipsum).
 
 # External Libraries
 

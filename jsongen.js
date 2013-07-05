@@ -82,7 +82,7 @@
 			jsongen.commands.date = function(format)
 			{
 				format = format || '';
-				return moment(this.utc()).format(format);
+				return moment.unix(this.unix()).format(format);
 			};
 			jsongen.commands.now = function(format)
 			{
@@ -206,27 +206,19 @@
 			return randomFromArray(jsongen.wordbank.cityNames);
 		},
 		date : function(){
-			return new Date(this.unix()).toDateString();
+			return new Date(this.unix()*1000).toISOString();
 		},
 		now : function()
 		{
-			return new Date().toDateString();
-		},
-		utc : function()
-		{
-			return new Date(this.unix()).toISOString();
-		},
-		utc_now : function()
-		{
-			return Date().getTime();
+			return new Date(this.unix_now()*1000).toISOString();
 		},
 		unix : function()
 		{
-			return _.random(987019508999, this.unix_now());
+			return _.random(1262325600, this.unix_now());
 		},
 		unix_now : function()
 		{
-			return Date.now();
+			return Math.round(new Date().getTime() / 1000);
 		},
 		bool : function()
 		{
