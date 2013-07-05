@@ -76,59 +76,48 @@ The word banks used are `lorem`, `firstNames`, `lastNames`, `companyNames`, `str
 
 
 # Commands
-### index()
-Returns the current iteration of a repeat loop. Useful for generating unique ids.
+**`index()`** - Returns the current iteration of a repeat loop. Useful for generating unique ids.
 
-### guid()
-Returns a [Globally Unique Identifier](http://en.wikipedia.org/wiki/Globally_unique_identifier)
+**`guid()`** - Returns a [Globally Unique Identifier](http://en.wikipedia.org/wiki/Globally_unique_identifier)
 
-### repeat(NumOfTimes), repeat(min, max)
-The repeat command is used as the first element of an array. It will then take the second element of the array and populate the array with that many copies of it. If only one parameter is passed to `repeat` is will repeat the object exactly that many times. If a range is given, Jsongen will chose a random number between those ranges.
+__`repeat(NumOfTimes), repeat(min, max)`__ - The repeat command is used as the first element of an array. It will then take the second element of the array and populate the array with that many copies of it. If only one parameter is passed to `repeat` is will repeat the object exactly that many times. If a range is given, Jsongen will chose a random number between those ranges.
 
-### name()
-Combines a random first and last name
+`name()`      - Combines a random first and last name
 
-#### firstname()
-Returns a first name from the most common North American names
+`firstname()` - Returns a first name from the most common North American names
+
+`lastname()`  - Returns a last name from the most common North American names
+
+`email()`     - Takes the first letter for a first name, a last name, @ a random company, with a random domain suffix
+
+`company()`   - Returns one of the top 500 companies in the world
+
+`phone()`     - Returns a randomly generated phone number
+
+`street()`    - Returns a common street name from North America
+
+`city()`      - Returns a common city name from North America
+
+`date()`      -
+
+`now()`       -
+
+`utc()`       -
+
+`utc_now()`   -
+
+`unix()`      -
+
+`unix_now()`  -
 
 
-**firstname()** - Returns a first name from the most common North American names
+**`bool()`**      -Returns either a true or a false at random.
 
+**`num(max), num(min, max)`** -If given one parameter returns a random number from 1 to `max`. If given two it will use the range.
 
-**lastname()** - Returns a last name from the most common North American names
+**`rand(n1,n2,n3,...)`** -Given a list of any type of items it will return one of them at random.
 
-### email()
-Takes the first letter for a first name, a last name, @ a random company, with a random domain suffix
-
-### company()
-Returns one of the top 500 companies in the world
-
-### phone()
-Returns a randomly generated phone number
-
-### street()
-Returns a common street name from North America
-
-### city()
-Returns a common city name from North America
-
-### date()
-### now()
-### utc()
-### utc_now()
-### unix()
-### unix_now()
-
-### bool()
-Returns eitehr a true or a false at random.
-### num(max), num(min, max)
-If given one parameter returns a random number from 1 to `max`. If given two it will use the range.
-
-### rand(n1,n2,n3,...)
-Given a list of any type of items it will return one of them at random.
-
-### lorem(max), lorem(min,max)
-Returns sentences of random text generated using (Lorem Ipsum)[http://en.wikipedia.org/wiki/Lorem_ipsum].
+**`lorem(max), lorem(min,max)`** -Returns sentences of random text generated using [Lorem Ipsum](http://en.wikipedia.org/wiki/Lorem_ipsum).
 
 
 # External Libraries
