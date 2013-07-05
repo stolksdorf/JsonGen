@@ -1,4 +1,4 @@
-(function(){
+;(function(){
 	var addedExternals = false;
 
 	//underscore Shim
@@ -35,16 +35,19 @@
 	jsongen = function(blueprint){
 		if(!addedExternals) {addExternalLibraries(); }
 
+		//A recursive function that will iterate over each layer of the json object
 		var processLayer = function(obj, index){
 			var result;
 			if(_.isArray(obj)){
 				result = [];
 				for(var i= 0; i < obj.length; i++){
 					if(typeof obj[i] === 'string' && startsWith(obj[i], '{{repeat(') && endsWith(obj[i], '}}')){
+						//check for the 'repeat' command, extract out the number or range, if range, get the random number
 						var number = obj[i].replace('{{repeat(', '').replace(')}}', '');
 						if(number.indexOf(',') !== -1){
 							number = _.random(parseInt(number.split(',')[0]),parseInt(number.split(',')[1]));
 						}
+						//Get the next object, and generate it n times
 						var nextObj = obj[i+1];
 						for(var t_index = 0; t_index < number; t_index++){
 							result.push(processLayer(nextObj, t_index));
@@ -55,6 +58,7 @@
 					}
 				}
 			}else if(typeof obj === 'function'){
+				//if it's a function, call it with the jsongen commands scoped
 				result = obj.call(jsongen.commands, index);
 			}else if(typeof obj === 'string'){
 				result = processString.call(_.extend(jsongen.commands, {t_index: index}), obj, index);
@@ -229,6 +233,7 @@
 		},
 		num : function(min, max)
 		{
+			//if nothing is provided default to a 1..10 range
 			if(typeof min === 'undefined'){
 				min = 10;
 			}

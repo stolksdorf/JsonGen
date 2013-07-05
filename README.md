@@ -1,8 +1,7 @@
-
 # What is it?
-Jsongen is library for generating tons of random data in JSON format. It uses a simple markup and handful of included functions. By passing a markup'd JSON object through `jsongen` it will return the randomized data as a JSON object.
+Jsongen is library for generating random JSON data. It uses a simple markup and handful of included functions. By passing a markup'd JSON object through `jsongen` it will return the randomized data as a JSON object.
 
-	var basicExample = jsongen([
+	var users = jsongen([
 		'{{repeat(2)}}',
 		{
 			name    : '{{name()}}',
@@ -20,8 +19,8 @@ Jsongen is library for generating tons of random data in JSON format. It uses a 
 			user_data : function(){
 				var rep = this.num(0,1000),
 					userType = 'bronze';
-				if(rep >= 300) userType = 'Silver';
-				if(rep >= 800) userType = 'Gold';
+				if(rep >= 300) userType = 'silver';
+				if(rep >= 800) userType = 'gold';
 				return {
 					type : userType,
 					reputation : rep
@@ -30,7 +29,11 @@ Jsongen is library for generating tons of random data in JSON format. It uses a 
 		}
 	]);
 
-	$(example).html(JSON.stringify(basicExample, null, '  '));
+	$(example).html(JSON.stringify(users, null, '  '));
+
+We're generating 2 users with various data: 0 - 3 post objects, a random status, and some user data. You can even embed the markup into strings, like we did with the address. If Jsongen runs into a function, it will just execute it normally and use the result.
+
+Feel free to play around with this example and experiment by adding some of the various other comamnds from below.
 
 
 
@@ -38,9 +41,15 @@ Jsongen is library for generating tons of random data in JSON format. It uses a 
 # Commands
 `index()`    - Returns the current iteration of a repeat loop. Useful for generating unique ids.
 
-`guid()`     - Returns a [Globally Unique Identifier](http://en.wikipedia.org/wiki/Globally_unique_identifier)
+`bool()`      - Returns either a true or a false at random.
+
+`num(max), num(min, max)` - If given one parameter returns a random number from 1 to `max`. If given two it will use the range.
+
+`rand(n1,n2,n3,...)` - Given a list of any type of items it will return one of them at random.
 
 `repeat(NumOfTimes), repeat(min, max)` - The repeat command is used as the first element of an array. It will then take the second element of the array and populate the array with that many copies of it. If only one parameter is passed to `repeat` is will repeat the object exactly that many times. If a range is given, Jsongen will chose a random number between those ranges.
+
+`guid()`     - Returns a [Globally Unique Identifier](http://en.wikipedia.org/wiki/Globally_unique_identifier)
 
 `name()`      - Combines a random first and last name
 
@@ -66,12 +75,6 @@ Jsongen is library for generating tons of random data in JSON format. It uses a 
 
 `unix_now()`  - Returns the current time in [Unix time](http://en.wikipedia.org/wiki/Unix_timestamp).
 
-`bool()`      - Returns either a true or a false at random.
-
-`num(max), num(min, max)` - If given one parameter returns a random number from 1 to `max`. If given two it will use the range.
-
-`rand(n1,n2,n3,...)` - Given a list of any type of items it will return one of them at random.
-
 `lorem(max), lorem(min,max)` - Returns sentences of random text generated using [Lorem Ipsum](http://en.wikipedia.org/wiki/Lorem_ipsum).
 
 
@@ -85,11 +88,16 @@ This is useful if you need to add logic to your data.
 
 	var embeddedFunctions = jsongen([
 		'{{repeat(5)}}',
-		{
-			email : '{{email()}}',
-			gender : function(){
-				if(this.bool()) return 'male';
-				return 'female';
+		function(){
+			var rep = this.num(0,1000),
+				userType = 'bronze';
+			if(rep >= 300) userType = 'silver';
+			if(rep >= 800) userType = 'gold';
+			return {
+				email      : this.email(),
+				user_type  : userType,
+				reputation : rep,
+				gender     : this.rand('male', 'female')
 			}
 		}
 	]);
@@ -141,12 +149,12 @@ Every Faker.js function is accessible using the `Faker` prefix. Check out the fu
 
 [Moment.js](http://momentjs.com/) is a complete Javascript date library for parsing, validating, manipulating, and formatting dates. If you have it on your page, then Jsongen will update the `now()` and the `date()` functions to use Moment.js's formatting.
 
-Check out full documentation on Moment.js's formating [here](http://momentjs.com/docs/#/parsing/string-format/).
+Check out full documentation on Moment.js's formating [here](http://momentjs.com/docs/#/displaying/format/).
 
 	var MomentIsAlsoCool = jsongen([
-		'{{date("YYYY-MM-DD HH:mm Z")}}',
+		'{{date("dddd, MMMM Do YYYY, h:mm:ssA")}}',
 		function(){
-			return this.now('dddd MMMM DD[, ] DDD [day of the year.] SSS[ms]');
+			return this.now('dddd MMMM Do[, ] DDDo [day of the year.] SSS[ms]');
 		}
 	]);
 
