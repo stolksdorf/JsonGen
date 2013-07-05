@@ -29,10 +29,6 @@ jQuery.fn.scrollTo = function(duration){
 	$('html, body').animate({scrollTop: $(this).offset().top}, duration);
 };
 
-
-
-
-
 CreatePaintJob = function(projectData){
 	return Object.create(PaintJob_Block_Project).initialize(projectData);
 };

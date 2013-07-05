@@ -21,7 +21,6 @@ PaintJob_Block_Sidebar = Object.create(Block).blueprint({
 			$('body').scrollTo();
 		});
 
-
 		this.dom.logo.mouseover(function(){
 			if(self.dom.block.hasClass('stuck')){
 				self.dom.logoIcon.hide();
@@ -31,7 +30,6 @@ PaintJob_Block_Sidebar = Object.create(Block).blueprint({
 			self.dom.logoIcon.show();
 			self.dom.logoUp.hide();
 		});
-
 
 		return this;
 	},

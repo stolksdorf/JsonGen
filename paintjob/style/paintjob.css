@@ -15,7 +15,7 @@ body{
 	position     : relative;
 
 	margin-top   : 150px;
-	margin-bottom: 150px;
+	margin-bottom: 100px;
 	margin-right : auto;
 	margin-left  : auto;
 
@@ -204,6 +204,10 @@ body{
 		.sideBar__nav__item.grey.scrolled   {border-left:10px solid #7F8C8D;}
 
 		.sideBar.stuck .sideBar__nav__item{
+			display: block;
+		}
+
+		.sideBar:hover .sideBar__nav__item{
 			display: block;
 		}
 
