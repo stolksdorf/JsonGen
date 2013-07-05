@@ -88,10 +88,10 @@ The repeat command is used as the first element of an array. It will then take t
 ### name()
 Combines a random first and last name
 
-### firstname()
+#### firstname()
 Returns a first name from the most common North American names
 
-### lastname()
+#### lastname()
 Returns a last name from the most common North American names
 
 ### email()
