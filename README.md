@@ -1,5 +1,5 @@
 # What is it?
-Jsongen is library for generating random JSON data. It uses a simple markup and handful of included functions. By passing a markup'd JSON object through `jsongen` it will return the randomized data as a JSON object.
+JsonGen is library for generating random JSON data. It uses a simple markup and handful of included functions. By passing a markup'd JSON object through `jsongen` it will return the randomized data as a JSON object.
 
 	var users = jsongen([
 		'{{repeat(2)}}',
@@ -31,7 +31,7 @@ Jsongen is library for generating random JSON data. It uses a simple markup and 
 
 	$(example).html(JSON.stringify(users, null, '  '));
 
-We're generating 2 users with various data: 0 - 3 post objects, a random status, and some user data. You can even embed the markup into strings, like we did with the address. If Jsongen runs into a function, it will just execute it normally and use the result.
+We're generating 2 users with various data: 0 - 3 post objects, a random status, and some user data. You can even embed the markup into strings, like we did with the address. If JsonGen runs into a function, it will just execute it normally and use the result.
 
 Feel free to play around with this example and experiment by adding some of the various other comamnds from below.
 
@@ -47,7 +47,7 @@ Feel free to play around with this example and experiment by adding some of the 
 
 `rand(n1,n2,n3,...)` - Given a list of any type of items it will return one of them at random.
 
-`repeat(NumOfTimes), repeat(min, max)` - The repeat command is used as the first element of an array. It will then take the second element of the array and populate the array with that many copies of it. If only one parameter is passed to `repeat` is will repeat the object exactly that many times. If a range is given, Jsongen will chose a random number between those ranges.
+`repeat(NumOfTimes), repeat(min, max)` - The repeat command is used as the first element of an array. It will then take the second element of the array and populate the array with that many copies of it. If only one parameter is passed to `repeat` is will repeat the object exactly that many times. If a range is given, JsonGen will chose a random number between those ranges.
 
 `guid()`     - Returns a [Globally Unique Identifier](http://en.wikipedia.org/wiki/Globally_unique_identifier)
 
@@ -82,7 +82,7 @@ Feel free to play around with this example and experiment by adding some of the 
 
 
 # Functions
-If Jsongen comes across a function in your markup, it will not only execute it, but it will scope all of Jsongen's functions onto `this`, letting you use everything in the library from within the function.
+If JsonGen comes across a function in your markup, it will not only execute it, but it will scope all of JsonGen's functions onto `this`, letting you use everything in the library from within the function.
 
 This is useful if you need to add logic to your data.
 
@@ -109,7 +109,7 @@ This is useful if you need to add logic to your data.
 
 
 # Definitions
-Jsongen uses arrays of words to generate it's random data stored in the `jsongen.wordbank` variable. You can overwrite these to have your data generation more specific to your needs.
+JsonGen uses arrays of words to generate it's random data stored in the `jsongen.wordbank` variable. You can overwrite these to have your data generation more specific to your needs.
 
 The word banks used are `lorem`, `firstNames`, `lastNames`, `companyNames`, `streetNames`, `cityNames`, and `websiteDomains`
 
@@ -127,11 +127,11 @@ The word banks used are `lorem`, `firstNames`, `lastNames`, `companyNames`, `str
 
 
 # External Libraries
-Jsongen will pick up additional functionality if certain libraries are included on your page.
+JsonGen will pick up additional functionality if certain libraries are included on your page.
 
 ## Faker.js
 
-[Faker.js](https://github.com/marak/Faker.js/) is a fantastic library written by Matthew Bergman & Marak Squires. It greatly increases the types of data you can generate with Jsongen.
+[Faker.js](https://github.com/marak/Faker.js/) is a fantastic library written by Matthew Bergman & Marak Squires. It greatly increases the types of data you can generate with JsonGen.
 
 Every Faker.js function is accessible using the `Faker` prefix. Check out the full documentation [here](https://github.com/marak/Faker.js/#api).
 
@@ -147,7 +147,7 @@ Every Faker.js function is accessible using the `Faker` prefix. Check out the fu
 
 ## Moment.js
 
-[Moment.js](http://momentjs.com/) is a complete Javascript date library for parsing, validating, manipulating, and formatting dates. If you have it on your page, then Jsongen will update the `now()` and the `date()` functions to use Moment.js's formatting.
+[Moment.js](http://momentjs.com/) is a complete Javascript date library for parsing, validating, manipulating, and formatting dates. If you have it on your page, then JsonGen will update the `now()` and the `date()` functions to use Moment.js's formatting.
 
 Check out full documentation on Moment.js's formating [here](http://momentjs.com/docs/#/displaying/format/).
 
