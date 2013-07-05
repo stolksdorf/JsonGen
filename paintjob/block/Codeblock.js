@@ -12,7 +12,7 @@ Paintjob_Block_Example = Object.create(Block).blueprint({
 			block : this.getSchematic()
 		};
 
-		var code = preCodeElement.html();
+		var code = preCodeElement.text();
 		preCodeElement.parent().replaceWith(this.dom.block);
 		this.getElements();
 

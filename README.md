@@ -20,11 +20,12 @@ Jsongen is library for generating tons of random data in JSON format. It uses a 
 			user_data : function(){
 				var rep = this.num(0,1000),
 					userType = 'bronze';
-				if(rep > 300) userType = 'Silver';
-				if(rep > 800) userType = 'Gold';
+				if(rep >= 300) userType = 'Silver';
+				if(rep >= 800) userType = 'Gold';
 				return {
 					type : userType,
 					reputation : rep
+				}
 			}
 		}
 	]);
@@ -65,13 +66,13 @@ Jsongen is library for generating tons of random data in JSON format. It uses a 
 
 `unix_now()`  - Returns the current time in [Unix time](http://en.wikipedia.org/wiki/Unix_timestamp).
 
-`bool()`      -Returns either a true or a false at random.
+`bool()`      - Returns either a true or a false at random.
 
-`num(max), num(min, max)` -If given one parameter returns a random number from 1 to `max`. If given two it will use the range.
+`num(max), num(min, max)` - If given one parameter returns a random number from 1 to `max`. If given two it will use the range.
 
-`rand(n1,n2,n3,...)` -Given a list of any type of items it will return one of them at random.
+`rand(n1,n2,n3,...)` - Given a list of any type of items it will return one of them at random.
 
-`lorem(max), lorem(min,max)` -Returns sentences of random text generated using [Lorem Ipsum](http://en.wikipedia.org/wiki/Lorem_ipsum).
+`lorem(max), lorem(min,max)` - Returns sentences of random text generated using [Lorem Ipsum](http://en.wikipedia.org/wiki/Lorem_ipsum).
 
 
 
@@ -138,7 +139,7 @@ Every Faker.js function is accessible using the `Faker` prefix. Check out the fu
 
 ## Moment.js
 
-[Moment.js](http://momentjs.com/) is a complete Javascript date library for parsing, validating, manipulating, and formatting dates. If you have it on your page, then Jsongen will update the `now` and the `date` functions to use Moment.js's formatting.
+[Moment.js](http://momentjs.com/) is a complete Javascript date library for parsing, validating, manipulating, and formatting dates. If you have it on your page, then Jsongen will update the `now()` and the `date()` functions to use Moment.js's formatting.
 
 Check out full documentation on Moment.js's formating [here](http://momentjs.com/docs/#/parsing/string-format/).
 

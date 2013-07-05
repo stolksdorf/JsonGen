@@ -20,7 +20,7 @@ PaintJob_Block_Project = Object.create(Block).blueprint({
 		if(this.projectData.use_local){
 			$.get('readme.md', function(result){
 				self.projectData.readme = result;
-				self.projectData.name = self.projectData.repo;
+				self.projectData.name = self.projectData.display_name || self.projectData.repo;
 				self.render();
 			});
 			return this;
@@ -74,9 +74,7 @@ PaintJob_Block_Project = Object.create(Block).blueprint({
 
 	buildDocumentation : function(markdown)
 	{
-		console.log(markdown);
 		var newHTML = new Markdown.Converter().makeHtml(markdown);
-		console.log(newHTML);
 		newHTML = newHTML.replace(/<h1>/g, '</div><div class="docblock"><h1>' );
 		this.dom.documentation.html(newHTML + '</div>');
 		return this;
