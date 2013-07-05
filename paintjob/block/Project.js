@@ -74,7 +74,9 @@ PaintJob_Block_Project = Object.create(Block).blueprint({
 
 	buildDocumentation : function(markdown)
 	{
+		console.log(markdown);
 		var newHTML = new Markdown.Converter().makeHtml(markdown);
+		console.log(newHTML);
 		newHTML = newHTML.replace(/<h1>/g, '</div><div class="docblock"><h1>' );
 		this.dom.documentation.html(newHTML + '</div>');
 		return this;

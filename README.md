@@ -1,5 +1,6 @@
 
-# Hey there
+# What is it?
+Jsongen is library for generating tons of random data in JSON format. It uses a simple markup and handful of included functions. By passing a markup'd JSON object through `jsongen` it will return the randomized data as a JSON object.
 
 	var basicExample = jsongen([
 		'{{repeat(2)}}',
@@ -16,50 +17,19 @@
 				}
 			],
 			status : '{{rand("new", "processing", "registered")}}',
-			tags   : [
-				'{{repeat(2,10)}}',
-				'{{lorem(1)}}'
-			]
-		}
-	]);
-
-	$(example).html(JSON.stringify(basicExample, null, '  '));
-
-
-
-
-# Functions
-If Jsongen comes across a function in your markup, it will not only execute it, but it will scope all of Jsongen's functions onto `this`, letting you use everything in the library from within the function.
-
-This is useful if you need to add logic to your data.
-
-	var embeddedFunctions = jsongen([
-		'{{repeat(5)}}',
-		{
-			email : '{{email()}}',
-			gender : function(){
-				if(this.bool()) return 'male';
-				return 'female';
+			user_data : function(){
+				var rep = this.num(0,1000),
+					userType = 'bronze';
+				if(rep > 300) userType = 'Silver';
+				if(rep > 800) userType = 'Gold';
+				return {
+					type : userType,
+					reputation : rep
 			}
 		}
 	]);
 
-	$(example).html(JSON.stringify(embeddedFunctions, null, '  '));
-
-# Definitions
-Jsongen uses arrays of words to generate it's random data stored in the `jsongen.wordbank` variable. You can overwrite these to have your data generation more specific to your needs.
-
-The word banks used are `lorem`, `firstNames`, `lastNames`, `companyNames`, `streetNames`, `cityNames`, and `websiteDomains`
-
-	jsongen.wordbank.firstNames = ['Enzo', 'Dot', 'Bob', 'Megabyte', 'Hexidecimal'];
-
-	var RebootCharacters = jsongen([
-		'{{repeat(2)}}',
-		'{{firstname()}}'
-	]);
-
-	$(example).html(JSON.stringify(RebootCharacters, null, '  '));
-
+	$(example).html(JSON.stringify(basicExample, null, '  '));
 
 
 
@@ -69,7 +39,7 @@ The word banks used are `lorem`, `firstNames`, `lastNames`, `companyNames`, `str
 
 `guid()`     - Returns a [Globally Unique Identifier](http://en.wikipedia.org/wiki/Globally_unique_identifier)
 
-__`repeat(NumOfTimes), repeat(min, max)`__ - The repeat command is used as the first element of an array. It will then take the second element of the array and populate the array with that many copies of it. If only one parameter is passed to `repeat` is will repeat the object exactly that many times. If a range is given, Jsongen will chose a random number between those ranges.
+`repeat(NumOfTimes), repeat(min, max)` - The repeat command is used as the first element of an array. It will then take the second element of the array and populate the array with that many copies of it. If only one parameter is passed to `repeat` is will repeat the object exactly that many times. If a range is given, Jsongen will chose a random number between those ranges.
 
 `name()`      - Combines a random first and last name
 
@@ -103,8 +73,51 @@ __`repeat(NumOfTimes), repeat(min, max)`__ - The repeat command is used as the f
 
 `lorem(max), lorem(min,max)` -Returns sentences of random text generated using [Lorem Ipsum](http://en.wikipedia.org/wiki/Lorem_ipsum).
 
-# External Libraries
 
+
+
+
+# Functions
+If Jsongen comes across a function in your markup, it will not only execute it, but it will scope all of Jsongen's functions onto `this`, letting you use everything in the library from within the function.
+
+This is useful if you need to add logic to your data.
+
+	var embeddedFunctions = jsongen([
+		'{{repeat(5)}}',
+		{
+			email : '{{email()}}',
+			gender : function(){
+				if(this.bool()) return 'male';
+				return 'female';
+			}
+		}
+	]);
+
+	$(example).html(JSON.stringify(embeddedFunctions, null, '  '));
+
+
+
+
+
+# Definitions
+Jsongen uses arrays of words to generate it's random data stored in the `jsongen.wordbank` variable. You can overwrite these to have your data generation more specific to your needs.
+
+The word banks used are `lorem`, `firstNames`, `lastNames`, `companyNames`, `streetNames`, `cityNames`, and `websiteDomains`
+
+	jsongen.wordbank.firstNames = ['Enzo', 'Dot', 'Bob', 'Megabyte', 'Hexidecimal'];
+
+	var RebootCharacters = jsongen([
+		'{{repeat(2)}}',
+		'{{firstname()}}'
+	]);
+
+	$(example).html(JSON.stringify(RebootCharacters, null, '  '));
+
+
+
+
+
+# External Libraries
 Jsongen will pick up additional functionality if certain libraries are included on your page.
 
 ## Faker.js
