@@ -91,8 +91,11 @@ Combines a random first and last name
 #### firstname()
 Returns a first name from the most common North American names
 
-#### lastname()
-Returns a last name from the most common North American names
+
+**firstname()** - Returns a first name from the most common North American names
+
+
+**lastname()** - Returns a last name from the most common North American names
 
 ### email()
 Takes the first letter for a first name, a last name, @ a random company, with a random domain suffix
