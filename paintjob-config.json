@@ -5,7 +5,7 @@
 
 	"runnable_code_blocks" : true,
 	"show_html_example"    : true,
-	"scripts"              : ["jsongen.js"],
+	"scripts"              : ["jsongen.js", "optional_libs/faker.js", "optional_libs/moment.js"],
 
 	"icons" : [
 		{
