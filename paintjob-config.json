@@ -1,38 +1,37 @@
 {
-	"icon_class" : "icon-question",
-	"icon_color" : "blue",
-	//"example_image" : "http://i.imgur.com/Mlpfb.gif",
+	"icon_class" : "icon-cogs",
+	"icon_color" : "steel",
+	"example_image" : "",
 
-	"runnable_code_blocks" : false,
-	"show_html_example"    : false,
-	"scripts"              : [],
+	"runnable_code_blocks" : true,
+	"show_html_example"    : true,
+	"scripts"              : ["jsongen.js"],
 
 	"icons" : [
 		{
 			"icon_class" : "icon-github",
 			"color"      : "blue",
-			"link"       : "https://github.com/stolksdorf/REPO",
+			"link"       : "https://github.com/stolksdorf/JsonGen",
 			"tooltip"    : "View on Github"
 		},
 		{
 			"icon_class" : "icon-code-fork",
 			"color"      : "green",
-			"link"       : "https://github.com/stolksdorf/REPO/fork",
+			"link"       : "https://github.com/stolksdorf/JsonGen/fork",
 			"tooltip"    : "Fork on Github"
 		},
 		{
 			"icon_class" : "icon-code",
 			"color"      : "steel",
-			"link"       : "https://raw.github.com/stolksdorf/REPO/BRANCH/FILE",
+			"link"       : "https://raw.github.com/stolksdorf/JsonGen/master/jsongen.js",
 			"tooltip"    : "View Raw"
 		},
-		/*
 		{
 			"icon_class" : "icon-download-alt",
 			"color"      : "orange",
-			"link"       : "https://raw.github.com/stolksdorf/REPO/BRANCH/PRODFILE",
+			"link"       : "https://raw.github.com/stolksdorf/JsonGen/master/jsongen.min.js",
 			"tooltip"    : "Get Production Version"
-		},*/
+		},
 		{
 			"icon_class" : "icon-home",
 			"color"      : "red",
