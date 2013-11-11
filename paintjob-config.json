@@ -1,0 +1,44 @@
+{
+	"icon_class" : "icon-question",
+	"icon_color" : "blue",
+	//"example_image" : "http://i.imgur.com/Mlpfb.gif",
+
+	"runnable_code_blocks" : false,
+	"show_html_example"    : false,
+	"scripts"              : [],
+
+	"icons" : [
+		{
+			"icon_class" : "icon-github",
+			"color"      : "blue",
+			"link"       : "https://github.com/stolksdorf/REPO",
+			"tooltip"    : "View on Github"
+		},
+		{
+			"icon_class" : "icon-code-fork",
+			"color"      : "green",
+			"link"       : "https://github.com/stolksdorf/REPO/fork",
+			"tooltip"    : "Fork on Github"
+		},
+		{
+			"icon_class" : "icon-code",
+			"color"      : "steel",
+			"link"       : "https://raw.github.com/stolksdorf/REPO/BRANCH/FILE",
+			"tooltip"    : "View Raw"
+		},
+		/*
+		{
+			"icon_class" : "icon-download-alt",
+			"color"      : "orange",
+			"link"       : "https://raw.github.com/stolksdorf/REPO/BRANCH/PRODFILE",
+			"tooltip"    : "Get Production Version"
+		},*/
+		{
+			"icon_class" : "icon-home",
+			"color"      : "red",
+			"link"       : "https://github.com/stolksdorf",
+			"tooltip"    : "Check out more cool things"
+		}
+
+	],
+}
