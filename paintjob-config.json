@@ -7,6 +7,13 @@
 	"show_html_example"    : true,
 	"scripts"              : ["jsongen.js", "optional_libs/faker.js", "optional_libs/moment.js"],
 
+	"local" : {
+		"user"        : "stolksdorf",
+		"repo"        : "JsonGen",
+		"name"        : "JsonGen",
+		"description" : "This is just some sample text for when I'm local testing"
+	},
+
 	"icons" : [
 		{
 			"icon_class" : "icon-github",

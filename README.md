@@ -31,7 +31,8 @@ JsonGen is library for generating random JSON data. It uses a simple markup and 
 		}
 	]);
 
-	$(example).html(JSON.stringify(users, null, '  '));
+	$(example).html('<pre>' + JSON.stringify(users, null, '  ') + '</pre>')
+			  .css('font-family', 'Courier');
 
 We're generating 2 users with various data: 0 - 3 post objects, a random status, and some user data. You can even embed the markup into strings, like we did with the address. If JsonGen runs into a function, it will just execute it normally and use the result.
 
@@ -104,7 +105,8 @@ This is useful if you need to add logic to your data.
 		}
 	]);
 
-	$(example).html(JSON.stringify(embeddedFunctions, null, '  '));
+	$(example).html('<pre>' + JSON.stringify(embeddedFunctions, null, '  ') + '</pre>')
+			  .css('font-family', 'Courier');
 
 
 
@@ -122,7 +124,8 @@ The word banks used are `lorem`, `firstNames`, `lastNames`, `companyNames`, `str
 		'{{firstname()}}'
 	]);
 
-	$(example).html(JSON.stringify(RebootCharacters, null, '  '));
+	$(example).html('<pre>' + JSON.stringify(RebootCharacters, null, '  ') + '</pre>')
+			  .css('font-family', 'Courier');
 
 
 
@@ -145,7 +148,8 @@ Every Faker.js function is accessible using the `Faker` prefix. Check out the fu
 		}
 	});
 
-	$(example).html(JSON.stringify(FakerIsCool, null, '  '));
+	$(example).html('<pre>' + JSON.stringify(FakerIsCool, null, '  ') + '</pre>')
+			  .css('font-family', 'Courier');
 
 ## Moment.js
 
@@ -160,5 +164,6 @@ Check out full documentation on Moment.js's formating [here](http://momentjs.com
 		}
 	]);
 
-	$(example).html(JSON.stringify(MomentIsAlsoCool, null, '  '));
+	$(example).html('<pre>' + JSON.stringify(MomentIsAlsoCool, null, '  ') + '</pre>')
+			  .css('font-family', 'Courier');
 
