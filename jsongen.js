@@ -1,6 +1,8 @@
 ;(function(){
 	var addedExternals = false;
 
+	var jsongen_uniqueId = 0;
+
 	//underscore Shim
 	var _ = _ || {
 		extend : function(obj1, obj2){
@@ -165,6 +167,11 @@
 		index : function()
 		{
 			return this.t_index;
+		},
+		id : function(prefix){
+			prefix = prefix || 'id';
+			jsongen_uniqueId = jsongen_uniqueId + 1;
+			return prefix + jsongen_uniqueId;
 		},
 		guid : function()
 		{

@@ -7,7 +7,7 @@ JsonGen is library for generating random JSON data. It uses a simple markup and 
 		'{{repeat(2)}}',
 		{
 			name    : '{{name()}}',
-			id      : '{{guid()}}',
+			id      : '{{id("user")}}',
 			email   : '{{email()}}',
 			address : '{{num(1,99)}} {{street()}}, {{city()}}',
 			posts   : [
@@ -42,7 +42,9 @@ Feel free to play around with this example and experiment by adding some of the 
 
 
 # Commands
-`index()`    - Returns the current iteration of a repeat loop. Useful for generating unique ids.
+`index()`    - Returns the current iteration of a repeat loop.
+
+`id(prefix)`   - Returns a unique id with the given prefix. Prefix defaults to 'id'
 
 `bool()`      - Returns either a true or a false at random.
 
