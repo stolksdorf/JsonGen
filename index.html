@@ -44,21 +44,23 @@
 			projectData.user = temp[2].split('.')[0];
 			projectData.repo = temp[temp.length-2];
 		}
-		urls = {
-			prod : {
-				repo   : 'https://api.github.com/repos/' + projectData.user + '/' + projectData.repo,
-				readme : 'https://api.github.com/repos/' + projectData.user + '/' + projectData.repo + '/readme',
-				config : 'https://api.github.com/repos/' + projectData.user + '/' + projectData.repo + '/contents/paintjob-config.json',
-				pj     : 'https://api.github.com/repos/stolksdorf/Paintjob/contents/paintjob.compiled.html'
-			},
-			testing : {
+		projectData.urls = {
+			repo   : 'https://api.github.com/repos/' + projectData.user + '/' + projectData.repo,
+			readme : 'https://api.github.com/repos/' + projectData.user + '/' + projectData.repo + '/readme',
+			config : 'https://api.github.com/repos/' + projectData.user + '/' + projectData.repo + '/contents/paintjob-config.json',
+			pj     : 'https://api.github.com/repos/stolksdorf/Paintjob/contents/paintjob.compiled.html',
+			scripts : 'https://api.github.com/repos/' + projectData.user + '/' + projectData.repo + '/contents/'
+		};
+		if(TestMode){
+			projectData.urls = {
 				repo   : undefined,
 				readme : 'README.md',
 				config : 'paintjob-config.json',
-				pj     : 'https://api.github.com/repos/stolksdorf/Paintjob/contents/paintjob.compiled.html'
+				scripts : '',
 				//pj     : 'paintjob.compiled.html'
-			},
-		};
+				pj     : 'https://api.github.com/repos/stolksdorf/Paintjob/contents/paintjob.compiled.html'
+			};
+		}
 
 		var remoteCall = function(url, callback){
 			if(!url) return;
@@ -85,26 +87,24 @@
 			return;
 		};
 
-		var url = urls.prod;
-		if(TestMode) url = urls.testing;
 
-		remoteCall(url.config, function(config){
+		remoteCall(projectData.urls.config, function(config){
 			if(config.content) config = Base64.decode(config.content);
 			eval("var result = " + config);
-			self.projectData = extend(self.projectData, result);
+			projectData = extend(projectData, result);
 		});
 
-		remoteCall(url.repo, function(repoData){
-			self.projectData.name        = repoData.name;
-			self.projectData.github_url  = repoData.owner.html_url;
-			self.projectData.description = repoData.description;
+		remoteCall(projectData.urls.repo, function(repoData){
+			projectData.name        = repoData.name;
+			projectData.github_url  = repoData.owner.html_url;
+			projectData.description = repoData.description;
 		});
 
-		remoteCall(url.readme, function(readme){
-			self.projectData.readme = readme;
+		remoteCall(projectData.urls.readme, function(readme){
+			projectData.readme = readme;
 		});
 
-		remoteCall(url.pj, function(pjHtml){
+		remoteCall(projectData.urls.pj, function(pjHtml){
 			window.pjHtml = pjHtml
 		});
 
