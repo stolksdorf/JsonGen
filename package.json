@@ -1,0 +1,33 @@
+{
+  "name": "jsongen",
+  "version": "0.1.0",
+  "description": "Create massive amounts of rnadomized data through a simple JSON markup language",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/stolksdorf/JsonGen"
+  },
+  "author": "Scott Tolksdorf <scott.tolksdorf@gmail.com> (https://github.com/stolksdorf)",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "json",
+    "generator",
+    "random",
+    "data"
+  ],
+  "dependencies": {},
+  "bugs": {
+    "url": "https://github.com/stolksdorf/JsonGen/issues"
+  },
+  "homepage": "https://github.com/stolksdorf/JsonGen",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
