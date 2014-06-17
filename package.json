@@ -1,7 +1,7 @@
 {
   "name": "jsongen",
   "version": "0.1.0",
-  "description": "Create massive amounts of rnadomized data through a simple JSON markup language",
+  "description": "Create massive amounts of randomized data through a simple JSON markup language",
   "license": "MIT",
   "repository": {
     "type": "git",
